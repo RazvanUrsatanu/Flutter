@@ -33,7 +33,7 @@ class _$WeatherSerializer implements StructuredSerializer<Weather> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {

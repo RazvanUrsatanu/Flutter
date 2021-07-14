@@ -3,9 +3,9 @@ import 'package:weather_app/src/models/location.dart';
 class GetLocation {}
 
 class GetLocationSuccessful {
-  final Location location;
-
   GetLocationSuccessful(this.location);
+
+  final Location location;
 
   @override
   String toString() {
@@ -14,9 +14,9 @@ class GetLocationSuccessful {
 }
 
 class GetLocationError {
-  final dynamic error;
-
   GetLocationError(this.error);
+
+  final dynamic error;
 
   @override
   String toString() {

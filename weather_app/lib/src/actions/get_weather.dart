@@ -1,16 +1,16 @@
-import 'package:weather_app/src/models/location.dart';
 import 'package:weather_app/src/models/weather.dart';
 
 class GetWeather {
+  GetWeather(this.lat, this.lon);
+
   final double lon;
   final double lat;
-  GetWeather(this.lat, this.lon);
 }
 
 class GetWeatherSuccessful {
-  final Weather weather;
-
   GetWeatherSuccessful(this.weather);
+
+  final Weather weather;
 
   @override
   String toString() {
@@ -19,9 +19,9 @@ class GetWeatherSuccessful {
 }
 
 class GetWeatherError {
-  final dynamic error;
-
   GetWeatherError(this.error);
+
+  final dynamic error;
 
   @override
   String toString() {
