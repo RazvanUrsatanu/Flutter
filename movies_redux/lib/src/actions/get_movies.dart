@@ -1,32 +1,11 @@
-import 'package:movies_redux/src/models/movie.dart';
+part of actions;
 
-class GetMovies {
-  const GetMovies();
+@freezed
+class GetMovies with _$GetMovies implements AppAction {
+  const factory GetMovies() = GetMoviesStart;
 
-  @override
-  String toString() {
-    return 'GetMovies{}';
-  }
-}
+  const factory GetMovies.successful(List<Movie> movies) = GetMoviesSuccessful;
 
-class GetMoviesSuccessful {
-  final List<Movie> movies;
-
-  GetMoviesSuccessful(this.movies);
-
-  @override
-  String toString() {
-    return 'GetMoviesSuccessful{movies: $movies}';
-  }
-}
-
-class GetMoviesError {
-  final dynamic error;
-
-  GetMoviesError(this.error);
-
-  @override
-  String toString() {
-    return 'GetMoviesError{error: $error}';
-  }
+  @Implements(ErrorAction)
+  const factory GetMovies.error(Object error, StackTrace stackTrace) = GetMoviesError;
 }
