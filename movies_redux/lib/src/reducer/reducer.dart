@@ -7,6 +7,11 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetMoviesSuccessful>(_getMoviesSuccessful),
   TypedReducer<AppState, GetMoviesError>(_getMoviesError),
   TypedReducer<AppState, SelectMovie>(_selectedMovie),
+  TypedReducer<AppState, RegisterSuccessful>(_registerSuccessful),
+  TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
+  TypedReducer<AppState, SignOutSuccessful>(_signOutSuccessful),
+  TypedReducer<AppState, UpdateProfileUrlSuccessful>(_updateProfileUrlSuccessful),
+  TypedReducer<AppState, GetReviewsSuccessful>(_getReviewSuccessful),
 ]);
 
 AppState _getMovies(AppState state, GetMovies action) {
@@ -28,4 +33,36 @@ AppState _getMoviesError(AppState state, GetMoviesError action) {
 
 AppState _selectedMovie(AppState state, SelectMovie action) {
   return state.rebuild((AppStateBuilder b) => b.selectedMovie = action.index);
+}
+
+AppState _registerSuccessful(AppState state, RegisterSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user = action.user.toBuilder();
+  });
+}
+
+AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user = action.user?.toBuilder();
+  });
+}
+
+AppState _signOutSuccessful(AppState state, SignOutSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user = null;
+  });
+}
+
+AppState _updateProfileUrlSuccessful(AppState state, UpdateProfileUrlSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.user.photo = action.url;
+  });
+}
+
+AppState _getReviewSuccessful(AppState state, GetReviewsSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.reviews
+      ..clear()
+      ..addAll(action.reviews);
+  });
 }

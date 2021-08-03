@@ -12,10 +12,14 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   }
 
   factory AppState.fromJson(dynamic json) {
-    return serializers.deserializeWith(serializer, json) as AppState;
+    return serializers.deserializeWith(serializer, json)!;
   }
 
   AppState._();
+
+  BuiltList<Review> get reviews;
+
+  AppUser? get user;
 
   BuiltList<Movie> get movies;
 
@@ -25,7 +29,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   int get page;
 
-  Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
+  Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
 
   static Serializer<AppState> get serializer => _$appStateSerializer;
 }

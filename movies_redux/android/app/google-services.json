@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "454562066106",
+    "project_id": "yts-project-gad",
+    "storage_bucket": "yts-project-gad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454562066106:android:ab507a1d3eb25420bf1c83",
+        "android_client_info": {
+          "package_name": "com.example.movies_redux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454562066106-bbmo3siapoihc665emgdc1fkit2e0r6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsAWURflp0dm2KkRNsqAzUuPdN5c52Fhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454562066106-bbmo3siapoihc665emgdc1fkit2e0r6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,3 +10,7 @@ part 'app_state.dart';
 part 'index.g.dart';
 
 part 'movie.dart';
+
+part 'app_user.dart';
+
+part 'review.dart';

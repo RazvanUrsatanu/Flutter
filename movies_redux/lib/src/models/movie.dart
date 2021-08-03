@@ -4,7 +4,7 @@ abstract class Movie implements Built<Movie, MovieBuilder> {
   factory Movie([void Function(MovieBuilder)? updates]) = _$Movie;
 
   factory Movie.fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(serializer, json) as Movie;
+    return serializers.deserializeWith(serializer, json)!;
   }
 
   Movie._();

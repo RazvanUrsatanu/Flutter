@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:movies_redux/src/actions/index.dart';
 import 'package:movies_redux/src/container/loading_container.dart';
 import 'package:movies_redux/src/container/movies_container.dart';
+import 'package:movies_redux/src/container/user_container.dart';
 import 'package:movies_redux/src/models/index.dart';
-import 'package:redux/redux.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,7 +19,32 @@ class HomePage extends StatelessWidget {
           builder: (BuildContext context, List<Movie> movies) {
             return Scaffold(
               appBar: AppBar(
-                title: Text('Movies'),
+                title: const Text('Movies'),
+                leading: GestureDetector(
+                  onTap: () async {
+                    //StoreProvider.of<AppState>(context).dispatch(const SignOut());
+                    final XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 500);
+                    if (file == null) {
+                      return;
+                    }
+
+                    StoreProvider.of<AppState>(context).dispatch(UpdateProfileUrl(file.path));
+                  },
+                  child: UserContainer(
+                    builder: (BuildContext context, AppUser? user) {
+                      if (user == null) {
+                        return const SizedBox.shrink();
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          child: user.photo == null ? Text(user.username[0].toUpperCase()) : null,
+                          backgroundImage: user.photo != null ? NetworkImage(user.photo!) : null,
+                        ),
+                      );
+                    },
+                  ),
+                ),
                 actions: <Widget>[
                   if (isLoading)
                     const Center(
@@ -52,8 +78,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      final Store<AppState> store = StoreProvider.of<AppState>(context);
-                      store.dispatch(SelectMovie(index));
+                      StoreProvider.of<AppState>(context)..dispatch(SelectMovie(index))..dispatch(const GetReviews());
                       Navigator.pushNamed(context, '/movie_details');
                     },
                   );
